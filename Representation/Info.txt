@@ -1,0 +1,253 @@
+PROJECT NAME: AI CINEMATIC STORY BUILDER
+
+------------------------------------------------------------
+
+1. PROJECT OVERVIEW
+
+AI Cinematic Story Builder is a full-stack web application that converts written stories into a cinematic visual experience. 
+
+The user writes or pastes a story in text format. The system automatically divides the story into multiple scenes. Each scene is paired with a relevant image using an external image API. These scenes are then displayed as an animated slideshow with smooth transitions and voice narration.
+
+The project demonstrates integration of frontend, backend, database, APIs, and browser-based text-to-speech.
+
+------------------------------------------------------------
+
+2. TECHNOLOGY STACK
+
+Frontend:
+React.js
+Framer Motion (animation library)
+Axios (API communication)
+CSS (styling)
+Web Speech API (text-to-speech)
+
+Backend:
+Node.js
+Express.js
+
+Database:
+MongoDB
+Mongoose
+
+External API:
+Pexels Image API
+
+Development Tools:
+VS Code
+Git
+GitHub
+
+------------------------------------------------------------
+
+3. PROJECT ARCHITECTURE
+
+User Input (React)
+        ↓
+Axios Request
+        ↓
+Node.js Express Server
+        ↓
+Story Processing Logic
+        ↓
+Image API Call (Pexels)
+        ↓
+MongoDB Database Storage
+        ↓
+React Fetch Request
+        ↓
+Animated Scene Rendering
+        ↓
+Voice Narration
+
+------------------------------------------------------------
+
+4. HOW THE PROJECT WORKS
+
+Step 1: User enters story
+User types or pastes a story into the input box.
+Each new line in the text is treated as a separate scene.
+
+Example:
+
+Scene 1
+Scene 2
+Scene 3
+
+------------------------------------------------------------
+
+Step 2: Story sent to backend
+React sends the story data to the backend server using Axios POST request.
+
+POST /api/stories
+
+Data sent:
+{
+ title: "Story Title",
+ content: "Story text"
+}
+
+------------------------------------------------------------
+
+Step 3: Backend processes story
+The Node.js server receives the story text.
+
+The story content is split into scenes using newline characters:
+
+content.split("\n")
+
+Each scene becomes an element in an array.
+
+Example:
+[
+ "The sky was dark",
+ "Rain started pouring",
+ "A shadow appeared"
+]
+
+------------------------------------------------------------
+
+Step 4: Image generation using API
+Each scene text is used as a search query for the Pexels API.
+
+Example:
+Scene text:
+"A dark forest at night"
+
+API request:
+Search images related to "dark forest night"
+
+The API returns an image URL.
+
+Each scene receives its own image.
+
+------------------------------------------------------------
+
+Step 5: Store data in MongoDB
+
+The following data is saved:
+
+title
+full story text
+array of scenes
+array of image URLs
+creation date
+
+Example document:
+
+{
+ title: "Test Story",
+ content: "Full text",
+ scenes: ["scene1","scene2"],
+ images: ["url1","url2"],
+ createdAt: date
+}
+
+------------------------------------------------------------
+
+Step 6: Fetch stories from database
+
+React requests saved stories using:
+
+GET /api/stories
+
+Server returns JSON data.
+
+React stores data in state variable.
+
+------------------------------------------------------------
+
+Step 7: Cinematic slideshow
+
+When user clicks "Play":
+
+Scenes change automatically every 3 seconds.
+
+Framer Motion provides smooth fade animation.
+
+Each scene displays:
+
+background image
+dark gradient overlay
+centered text
+
+------------------------------------------------------------
+
+Step 8: Voice narration
+
+Web Speech API converts scene text into speech.
+
+SpeechSynthesisUtterance reads each scene aloud.
+
+This creates cinematic storytelling experience.
+
+------------------------------------------------------------
+
+5. FILE STRUCTURE
+
+Root folder:
+
+server.js
+Backend logic
+
+models/Story.js
+Database schema
+
+client/src/App.js
+Frontend UI and animation logic
+
+.env
+Stores API keys securely
+
+package.json
+Project dependencies
+
+.gitignore
+Prevents sensitive files from uploading
+
+------------------------------------------------------------
+
+6. KEY FEATURES
+
+Convert story text into scenes
+Automatic image matching
+Animated slideshow
+Voice narration
+Dark themed UI
+Play button interaction
+MongoDB data storage
+API integration
+Responsive layout
+
+------------------------------------------------------------
+
+7. LEARNING OUTCOMES
+
+Understanding of MERN stack
+API integration
+Async programming
+React state management
+Database schema design
+Frontend animation
+Full stack architecture
+Problem solving
+Debugging skills
+
+------------------------------------------------------------
+
+8. FUTURE IMPROVEMENTS
+
+Add background music
+Add typewriter text animation
+Add fullscreen mode
+Add user login system
+Export story as video
+Multiple UI themes
+Story sharing feature
+
+------------------------------------------------------------
+
+CONCLUSION
+
+This project demonstrates the ability to build a complete full-stack application integrating frontend, backend, database, and external APIs to create an interactive user experience.
+
+The project shows practical implementation of modern web development concepts.
